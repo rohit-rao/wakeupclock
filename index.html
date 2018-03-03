@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body onload="onLoad()" style="margin: 24px;">
+
+<div id="section_main_control">
+<input class="button" type="button" id="connection" value="Connect">
+<input class="button" type="button" id="refresh" value="Refresh" style="display: none;">
+</div>
+
+<div id="section_clock_state" style="display: none;">
+<br>
+<br>
+Clock State:
+<br>
+<div>Current Time: <span id="current_time" class="time"></span></div>
+<div>Morning Alarm @<span id="morning_alarm" class="alarm"></span></div>
+<div>Nap Alarm @<span id="nap_alarm" class="alarm"></span></div>
+</div>
+
+<div id="section_clock_control" style="display: none;">
+<br>
+<br>
+Nap light control:
+<br>
+<input class="button" type="button" id="off" value="Off">
+<input class="button" type="button" id="on" value="On">
+</div>
+
+
+</body>
+</html>
