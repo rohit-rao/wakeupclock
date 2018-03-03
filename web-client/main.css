@@ -3,15 +3,15 @@
     border: none;
     color: white;
     margin: 4px;
-    padding: 30px 64px;
+    padding: 15px 24px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 div {
-    font-size: 36px;
+    font-size: 24px;
 }
 
 input[type="button"]:disabled {
