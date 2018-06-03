@@ -9,6 +9,13 @@ var g_state = DISCONNECTED;
 var g_device;
 var g_characteristic;
 
+function logError(msg) {
+  var container = document.getElementById("section_error_messages");
+  var node = document.createElement("div");
+  node.className = "error";
+  node.innerText = msg;
+  container.appendChild(node);
+}
 
 function onLoad() {
   var connectionButton = document.getElementById("connection");
@@ -90,7 +97,7 @@ function startBTConnection() {
           return true;
         })
       .catch(error => {
-          console.log(error);
+          logError(error);
           setState(ERROR);
         });
 }
@@ -110,7 +117,7 @@ function onBTConnectionEstablished(characteristic) {
 
 function onBTDisconnected(event) {
   let device = event.target;
-  console.log('Device ' + device.name + ' is disconnected.');
+  logError('Device ' + device.name + ' is disconnected.');
   setState(DISCONNECTED);
   g_device = undefined;
 }
@@ -120,13 +127,13 @@ function onClockStatusUpdated() {
 
   var response = event.target.value;
   if (response.byteLength != 10) {
-    console.log("Improper response size");
+    logError("Improper response size");
     return;
   }
 
   var status = response.getUint8(0);
   if (status != 0) {
-    console.log("Error response received");
+    logError("Error response received");
     return;
   }
 
@@ -171,7 +178,7 @@ function onRefresh() {
           return true;
         })
       .catch(error => {
-          console.log(error);
+          logError(error);
           document.getElementById("refresh").disabled = false;
         });
 }
@@ -181,7 +188,7 @@ function onTurnLightOff() {
   // light off immediately.
   var command = Uint8Array.of(0x79, 0x44, 12, 0, 0, 15, 0x7A);
   g_characteristic.writeValue(command)
-      .catch(error => { console.log(error); });
+      .catch(error => { logError(error); });
 }
 
 function onTurnLightOn() {
@@ -195,7 +202,7 @@ function onTurnLightOn() {
       enableTime.getHours(), enableTime.getMinutes(),
       30, 15, 0x7A);
   g_characteristic.writeValue(command)
-      .catch(error => { console.log(error); });
+      .catch(error => { logError(error); });
 }
 
 function onSetMorningAlarm() {
