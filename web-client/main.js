@@ -23,6 +23,8 @@ function onLoad() {
   document.getElementById("refresh").addEventListener("click", onRefresh);
   document.getElementById("off").addEventListener("click", onTurnLightOff);
   document.getElementById("on").addEventListener("click", onTurnLightOn);
+  document.getElementById("morning_0730").addEventListener(
+      "click", onSetMorningAlarm);
 }
 
 function setState(state) {
@@ -57,6 +59,8 @@ function setState(state) {
   } else {
     document.getElementById("section_clock_state").style.display = "none";
     document.getElementById("section_clock_control").style.display = "none";
+    document.getElementById("section_clock_control_morning").style.display =
+        "none";
     document.getElementById("refresh").style.display = "none";
   }
 
@@ -148,6 +152,8 @@ function onClockStatusUpdated() {
 
   document.getElementById("section_clock_state").style.display = "inline";
   document.getElementById("section_clock_control").style.display = "inline";
+  document.getElementById("section_clock_control_morning").style.display =
+      "inline";
 }
 
 function disconnectBT() {
@@ -190,6 +196,16 @@ function onTurnLightOn() {
       30, 15, 0x7A);
   g_characteristic.writeValue(command)
       .catch(error => { console.log(error); });
+}
+
+function onSetMorningAlarm() {
+  // Send a command to set the morning alarm time to 7:30am.
+  var command = Uint8Array.of(
+      0x79, 0x43,
+      7, 30,
+      0, 15, 0x7A);
+  g_characteristic.writeValue(command)
+      .catch(error => { logError(error); });
 }
 
 function formatTime(hours, minutes) {
