@@ -1,10 +1,10 @@
 var RESOURCE_VERSION = 1;
 
 var URLS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/main.css',
-  '/main.js'
+  '.',
+  'index.html',
+  'main.css',
+  'main.js'
 ]
 
 function getCacheName() {
