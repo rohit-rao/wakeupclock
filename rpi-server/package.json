@@ -1,0 +1,14 @@
+{
+  "name": "wakeupclock",
+  "version": "0.1.0",
+  "main": "main.js",
+  "dependencies": {
+    "bleno": "^0.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  },
+  "scripts": {
+    "test": "mocha --ui tdd"
+  }
+}
